@@ -26,14 +26,15 @@ class _HomeState extends State<Home> {
     });
   }
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('Todo'),
+        title: const Text('Todo'),
       ),
       body: Container(
-        padding: EdgeInsets.all(10),
+        padding: const EdgeInsets.all(10),
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
         color: Colors.amber,
@@ -45,7 +46,7 @@ class _HomeState extends State<Home> {
                 .snapshots(),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
-                return Center(
+                return const Center(
                   child: CircularProgressIndicator(),
                 );
               } else {
@@ -66,11 +67,11 @@ class _HomeState extends State<Home> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => AddTask()));
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => const AddTask()));
         },
         backgroundColor: Theme.of(context).primaryColor,
-        child: Icon(
+        child: const Icon(
           Icons.add,
           color: Colors.white,
         ),

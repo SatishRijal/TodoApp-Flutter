@@ -16,29 +16,29 @@ import 'package:todoappnew/screens/home.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(Myapp());
+  runApp(const MyApp());
 }
 
-class Myapp extends StatefulWidget {
-  const Myapp({super.key});
+class MyApp extends StatefulWidget {
+  const MyApp({super.key});
 
   @override
-  State<Myapp> createState() => _MyappState();
+  State<MyApp> createState() => _MyAppState();
 }
 
-class _MyappState extends State<Myapp> {
+class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
-        SystemUiOverlayStyle(statusBarColor: Colors.transparent));
+        const SystemUiOverlayStyle(statusBarColor: Colors.transparent));
     return MaterialApp(
       home: StreamBuilder(
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: (context, usersnapshot) {
           if (usersnapshot.hasData) {
-            return Home();
+            return const Home();
           } else {
-            return AuthScreen();
+            return const AuthScreen();
           }
         },
       ),

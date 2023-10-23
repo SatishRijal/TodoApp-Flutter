@@ -13,9 +13,9 @@ class _AuthScreenState extends State<AuthScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Authentication'),
+        title: const Text('Authentication'),
       ),
-      body: AuthForm(),
+      body: const AuthForm(),
     );
   }
 }
