@@ -12,9 +12,9 @@ class AuthForm extends StatefulWidget {
 
 class _AuthFormState extends State<AuthForm> {
   final _formkey = GlobalKey<FormState>();
-  var _email = '';
-  var _password = '';
-  var _username = '';
+  String _email = '';
+  String _password = '';
+  String _username = '';
   bool isLoginPage = false;
 
   startauthentication() {
@@ -22,11 +22,11 @@ class _AuthFormState extends State<AuthForm> {
     FocusScope.of(context).unfocus();
     if (validity) {
       _formkey.currentState!.save();
-      Submitform(_email, _password, _username);
+      submitform(_email, _password, _username);
     }
   }
 
-  Submitform(String email, String password, String username) async {
+  submitform(String email, String password, String username) async {
     final auth = FirebaseAuth.instance;
     UserCredential authResult;
     try {
@@ -43,14 +43,13 @@ class _AuthFormState extends State<AuthForm> {
             .set({'username': username, 'email': email});
       }
     } catch (err) {
-      print(err);
       return null;
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: MediaQuery.of(context).size.height,
       width: MediaQuery.of(context).size.width,
       child: ListView(
@@ -73,8 +72,9 @@ class _AuthFormState extends State<AuthForm> {
                           return null;
                         },
                         onSaved: (value) {
-                          _username:
-                          value;
+                          if (value != null) {
+                            _username = value;
+                          }
                         },
                         decoration: InputDecoration(
                           border: OutlineInputBorder(
@@ -97,13 +97,14 @@ class _AuthFormState extends State<AuthForm> {
                         return null;
                       },
                       onSaved: (value) {
-                        _email:
-                        value;
+                        if (value != null) {
+                          _email = value;
+                        }
                       },
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(8),
-                            borderSide: BorderSide()),
+                            borderSide: const BorderSide()),
                         labelText: 'Enter Email',
                         labelStyle: GoogleFonts.roboto(),
                       ),
@@ -120,8 +121,9 @@ class _AuthFormState extends State<AuthForm> {
                         return null;
                       },
                       onSaved: (value) {
-                        _password:
-                        value;
+                        if (value != null) {
+                          _password = value;
+                        }
                       },
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
@@ -153,7 +155,7 @@ class _AuthFormState extends State<AuthForm> {
                                 : Text('Sign up',
                                     style: GoogleFonts.roboto(fontSize: 16)))),
                     const SizedBox(height: 10),
-                    Container(
+                    SizedBox(
                         child: TextButton(
                             onPressed: () {
                               setState(() {
